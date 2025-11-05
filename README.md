@@ -121,7 +121,7 @@ python maze.py --use-random --find-all --draw-all-paths
 * Visualizes *all* discovered paths in semi-transparent colors.
 * Especially beautiful on small random mazes with multiple solutions.
 * `--use-random` must be used if you want to give yourself a chance of creating more than 1 path.
-* `'--find-all` prints out a small report on recursion outcomes
+* `--find-all` prints out a small report on recursion outcomes
 
 **Outputs:**
 
