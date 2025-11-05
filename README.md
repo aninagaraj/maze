@@ -147,7 +147,7 @@ Length of shortest path: 30 steps
 Length of longest path: 100 steps
 The algorithm made 2321703 recursive call(s) and 2321703 backtrack(s)
 Saved recursion stats.
-```|
+```
 ---
 
 ## Output Summary
