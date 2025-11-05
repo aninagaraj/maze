@@ -21,7 +21,7 @@ That inspiration led me to build something of my own — a maze generator and so
 * Find the **shortest path** (Dijkstra / A*) between start and finish
 * Optionally **recursively find all possible paths**
 * Visualize recursion depth and algorithmic behavior
-* Save results as clean, high-resolution PDFs
+* Save results as clean, high-resolution PNGs to print for the kiddos.
 
 ---
 
