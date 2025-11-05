@@ -229,7 +229,7 @@ Saved recursion stats.
 
 ## Acknowledgements
 
-* Inspired by [**Dan Shiffman’s “The Coding Train”**](https://thecodingtrain.com/) and his approachable visualizations of A* and other algorithms.
+* Inspired by [**Dan Shiffman’s “The Coding Train”**](https://thecodingtrain.com/) in general and specifically his visualizations of [**A star**](https://www.youtube.com/watch?v=aKYlikFAV4k) and [**maze generators**](https://www.youtube.com/watch?v=HyK_Q5rrcr4).
 * Created while learning Python, algorithms, and `matplotlib` — and while making something fun for my little **nephews and niece** who love mazes and puzzles.
 * I am a recreational coder which means the code is probably not optimized so feel free to use it as is or take it to the next level.
 
