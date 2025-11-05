@@ -44,15 +44,23 @@ def neighbors(p, m, n, class_):
     N, E, S, W = (p[0], p[1] + 1), (p[0] + 1, p[1]), (p[0], p[1] - 1), (p[0] - 1, p[1])
 
     if class_ == 'w':
-        if N[1] <= n: nb.append(N)
-        if E[0] <= m: nb.append(E)
-        if S[1] >= 1: nb.append(S)
-        if W[0] >= 1: nb.append(W)
+        if N[1] <= n: 
+            nb.append(N)
+        if E[0] <= m: 
+            nb.append(E)
+        if S[1] >= 1: 
+            nb.append(S)
+        if W[0] >= 1: 
+            nb.append(W)
     elif class_ == 'r':
-        if N[1] <= (n - .5): nb.append(N)
-        if E[0] <= (m - .5): nb.append(E)
-        if S[1] >= 1.5: nb.append(S)
-        if W[0] >= 1.5: nb.append(W)
+        if N[1] <= (n - .5): 
+            nb.append(N)
+        if E[0] <= (m - .5): 
+            nb.append(E)
+        if S[1] >= 1.5: 
+            nb.append(S)
+        if W[0] >= 1.5: 
+            nb.append(W)
     return nb
 
 
@@ -247,10 +255,14 @@ def maze_digger(m, n):
 
         def get_neightbors(self):
             nb = []
-            if self.y < n - 1 and not grid[self.x, self.y + 1].visited: nb.append((self.x, self.y + 1))
-            if 1 <= self.x and not grid[self.x - 1, self.y].visited: nb.append((self.x - 1, self.y))
-            if 1 <= self.y and not grid[self.x, self.y - 1].visited: nb.append((self.x, self.y - 1))
-            if self.x < m - 1 and not grid[self.x + 1, self.y].visited: nb.append((self.x + 1, self.y))
+            if self.y < n - 1 and not grid[self.x, self.y + 1].visited: 
+                nb.append((self.x, self.y + 1))
+            if 1 <= self.x and not grid[self.x - 1, self.y].visited: 
+                nb.append((self.x - 1, self.y))
+            if 1 <= self.y and not grid[self.x, self.y - 1].visited: 
+                nb.append((self.x, self.y - 1))
+            if self.x < m - 1 and not grid[self.x + 1, self.y].visited: 
+                nb.append((self.x + 1, self.y))
             return nb
 
         def visit(self, other):
@@ -261,10 +273,14 @@ def maze_digger(m, n):
             routes[((other.y + 1.5, other.x + 1.5), (self.y + 1.5, self.x + 1.5))] = 1
 
             # Remove walls between current and neighbor
-            if other.y == self.y + 1: other.l, self.r = False, False
-            if other.x == self.x + 1: other.t, self.b = False, False
-            if other.y + 1 == self.y: other.r, self.l = False, False
-            if other.x == self.x - 1: other.b, self.t = False, False
+            if other.y == self.y + 1: 
+                other.l, self.r = False, False
+            if other.x == self.x + 1: 
+                other.t, self.b = False, False
+            if other.y + 1 == self.y: 
+                other.r, self.l = False, False
+            if other.x == self.x - 1: 
+                other.b, self.t = False, False
 
             other.visited = True
             grid[other.x, other.y] = other
@@ -305,10 +321,14 @@ def maze_digger(m, n):
     for i in range(m):
         for j in range(n):
             cell = grid[i, j]
-            if cell.r: maze[(cell.y + 2, cell.x + 1), (cell.y + 2, cell.x + 2)] = 1
-            if cell.t: maze[(cell.y + 1, cell.x + 1), (cell.y + 2, cell.x + 1)] = 1
-            if cell.l: maze[(cell.y + 1, cell.x + 1), (cell.y + 1, cell.x + 2)] = 1
-            if cell.b: maze[(cell.y + 1, cell.x + 2), (cell.y + 2, cell.x + 2)] = 1
+            if cell.r: 
+                maze[(cell.y + 2, cell.x + 1), (cell.y + 2, cell.x + 2)] = 1
+            if cell.t: 
+                maze[(cell.y + 1, cell.x + 1), (cell.y + 2, cell.x + 1)] = 1
+            if cell.l: 
+                maze[(cell.y + 1, cell.x + 1), (cell.y + 1, cell.x + 2)] = 1
+            if cell.b: 
+                maze[(cell.y + 1, cell.x + 2), (cell.y + 2, cell.x + 2)] = 1
 
     # Convert routes to graph
     graph = defaultdict(list)
