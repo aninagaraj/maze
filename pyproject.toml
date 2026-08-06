@@ -1,0 +1,30 @@
+[project]
+name = "maze"
+version = "1.0.0"
+description = "Maze Generator and Path Finder — generates mazes, finds shortest/all paths, visualizes with matplotlib."
+authors = [{ name = "Aniruddha Nagaraj" }]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = ["numpy>=1.24", "matplotlib>=3.7"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment :: Puzzle Games",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.4"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

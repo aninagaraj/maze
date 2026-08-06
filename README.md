@@ -35,13 +35,14 @@ python maze.py [OPTIONS]
 
 ### Command-line options
 
-| Option             | Description                                                                                                                                                                   | Default | Example                       |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------- |
-| `--size m,n`       | Maze dimensions (width,height).                                                                                                                                               | `25,35` | `--size 40,40`                |
-| `--prob P`         | **Wall probability** — the probability that an edge of a square cell will be a wall in random maze mode. If `P` is too high, the maze may become unsolvable and require multiple regenerations. | `0.35`  | `--prob 0.2`                  |
-| `--use-random`     | Use the **random wall-based maze** instead of the digger (recursive backtracker).                                                                                             | *off*   | `--use-random`                |
-| `--find-all`       | Find **all possible paths** recursively (can be slow).                                                                                                                        | *off*   | `--find-all`                  |
-| `--draw-all-paths` | If combined with `--find-all`, draw and save **all discovered paths**.                                                                                                        | *off*   | `--find-all --draw-all-paths` |
+| Option             | Description                                                                                                                                                                   | Default  | Example                       |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------- |
+| `-s, --size W,H`   | Maze dimensions (width,height).                                                                                                                                               | `25,35`  | `-s 40,40`                    |
+| `-g, --generator G` | Maze generator: `digger` (perfect maze) or `random` (probabilistic walls).                                                                                                    | `digger` | `-g random`                   |
+| `-p, --prob P`     | **Wall probability** — chance an edge is a wall in random mode. Higher = denser, may require multiple regeneration attempts.  *Only meaningful with `-g random`*.              | `0.35`   | `-p 0.2`                      |
+| `-a, --all`        | Find **all possible paths** recursively (can be slow).                                                                                                                        | *off*    | `-a`                          |
+| `-d, --draw`       | Draw all discovered paths.  **Implies `--all`** — you only need `-d` to get both the recursion report and all‑paths image.                                                     | *off*    | `-d`                          |
+| `-o, --out-dir DIR`| Directory for output PNGs.                                                                                                                                                    | `.`      | `-o outputs`                  |
 
 ---
 
@@ -71,7 +72,7 @@ python maze.py
 ### 2. **Random Maze**
 
 ```bash
-python maze.py --use-random --prob 0.3
+python maze.py -g random -p 0.3
 ```
 
 * Each cell independently becomes a wall with probability `p`.
@@ -115,13 +116,13 @@ python maze.py --find-all
 ### 4. **Draw All Paths**
 
 ```bash
-python maze.py --use-random --find-all --draw-all-paths
+python maze.py -g random -d
 ```
 
 * Visualizes *all* discovered paths in semi-transparent colors.
 * Especially beautiful on small random mazes with multiple solutions.
-* `--use-random` must be used if you want to give yourself a chance of creating more than 1 path.
-* `--find-all` prints out a small report on recursion outcomes
+* `-g random` must be used if you want to give yourself a chance of creating more than 1 path.
+* `-a` (`--all`) prints out a small report on recursion outcomes
 
 **Outputs:**
 
@@ -172,12 +173,12 @@ Saved recursion stats.
 * No loops or dead ends.
 * Fast and guaranteed solvable.
 
-#### 2. Random Maze (`--use-random`)
+#### 2. Random Maze (`-g random`)
 
-* Each cell independently becomes a wall with probability `p` (`--prob`).
+* Each cell independently becomes a wall with probability `p` (`-p`).
 * If `p` is too high, the maze can become **too dense**, requiring multiple regenerations until a solvable configuration appears.
 * Random mazes can have **multiple paths**, **loops**, and **dead ends**.
-* Recursive pathfinding (`--find-all`) can be computationally expensive on these mazes.
+* Recursive pathfinding (`-a`) can be computationally expensive on these mazes.
 
 ---
 
@@ -189,7 +190,7 @@ Saved recursion stats.
 
 ---
 
-### Recursive Path Search (`--find-all`)
+### Recursive Path Search (`-a, --all`)
 
 * Explores *every possible route* from start to finish using **depth-first recursion**.
 * Tracks:
@@ -198,7 +199,7 @@ Saved recursion stats.
   * Backtrack count
   * Cul-de-sacs and branching points
 * Generates a `recursion.png` graph showing recursion growth and plateaus.
-* When combined with `--draw-all-paths`, produces `all_paths.png` — a visual map of all discovered routes.
+* When combined with `-d` (`--draw`), produces `all_paths.png` — a visual map of all discovered routes.
 
 ---
 
@@ -207,22 +208,22 @@ Saved recursion stats.
 * Start small for experimentation:
 
   ```bash
-  python maze.py --size 10,10
+  python maze.py -s 10,10
   ```
 * Adjust wall probability for challenge:
 
   ```bash
-  python maze.py --use-random --prob 0.15
+  python maze.py -g random -p 0.15
   ```
 * For recursion analysis only:
 
   ```bash
-  python maze.py --find-all
+  python maze.py -a
   ```
 * Combine everything (but bring patience):
 
   ```bash
-  python maze.py --use-random --prob 0.25 --find-all --draw-all-paths
+  python maze.py -g random -p 0.25 -d
   ```
 
 ---
@@ -242,7 +243,7 @@ Saved recursion stats.
 | **Author** | Aniruddha Nagaraj |
 | **License** | MIT |
 | **Python Version** | 3.8+ |
-| **Dependencies** | numpy, matplotlib |
+| **Dependencies** | `pip install -r requirements.txt` |
 
 
 ---
@@ -250,14 +251,15 @@ Saved recursion stats.
 ## Repository Structure
 ```
 ├── .gitignore
-├── images
-│   ├── all_paths.png
-│   ├── maze.png
-│   ├── random_maze.png
-│   ├── random_path.png
-│   ├── recursion.png
-│   └── shortestpath.png
 ├── LICENSE
-├── maze.py
-└── README.md
+├── README.md
+├── requirements.txt
+├── pyproject.toml
+├── maze.py              # CLI entry point
+├── maze_gen.py          # maze generation (random + recursive‑backtracker)
+├── pathfind.py          # Dijkstra (A*-like) + recursive all‑paths search
+├── visualize.py         # matplotlib plotting helpers
+├── tests/
+│   └── test_maze.py     # smoke tests (pytest)
+└── images/              # example outputs (generated, not tracked)
 ```
