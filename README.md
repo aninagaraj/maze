@@ -93,7 +93,7 @@ python maze.py -g random -p 0.3
 ### 3. **Recursion and Path Exploration**
 
 ```bash
-python maze.py --find-all
+python maze.py -a
 ```
 
 * Explores **all possible paths** recursively.
