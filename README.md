@@ -107,7 +107,7 @@ python maze.py -a
 * `shortestpath.png`
 * `recursion.png`
 
-| Recursion Depth Graph - Shows 6 paths were found                   |
+| Recursion Depth Graph - Shows 26 paths were found                   |
 | ---------------------------------------- |
 | ![Recursion Graph](images/recursion.png) |
 
@@ -139,14 +139,14 @@ python maze.py -g random -d
 | ---------------------------------- |
 ```
 Starting recursion ...
-        Paths found: 14272
-Finished in 12 second(s)
+	Paths found: 26
+Finished in 0 second(s)
 
-Paths to destination: 14272
-Cul-de-sacs or loops: 650017
-Length of shortest path: 30 steps
-Length of longest path: 100 steps
-The algorithm made 2321703 recursive call(s) and 2321703 backtrack(s)
+Paths to destination: 26
+Cul-de-sacs or loops: 32
+Length of shortest path: 8 steps
+Length of longest path: 22 steps
+The algorithm made 275 recursive call(s) and 275 backtrack(s)
 Saved recursion stats.
 ```
 ---

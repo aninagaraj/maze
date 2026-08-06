@@ -18,7 +18,7 @@ def _draw_walls(ax, maze):
     for (xf, yf), (xt, yt), v in ((*k, v) for k, v in maze.items()):
         if v > 0:
             ax.plot([xf, xt], [yf, yt],
-                    lw=4, color=WALL_COLOR, zorder=1,
+                    lw=8, color=WALL_COLOR, zorder=1,
                     solid_capstyle='round', solid_joinstyle='round')
 
 
